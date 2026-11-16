@@ -35,6 +35,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid #2B3A9C; outline-offs
 .tab .u { display: none; }
 .tab[aria-pressed="true"] .u { display: block; }
 
+/* In season band: cut-out and tag stay on one line on wide screens, so every season is the same height */
+@media (min-width: 761px) {
+  .band-art { flex-wrap: nowrap !important; min-width: 0; }
+  .band-art > :first-child { flex: 1 1 auto; min-width: 0; }
+  .band-art > :last-child { flex: 0 0 auto; }
+}
+
+/* In season band: same height whatever the season */
+@media (max-width: 1100px) { .season-band { min-height: 640px !important; } }
+@media (max-width: 760px) { .season-band { min-height: 740px !important; } }
+
 /* pinboard stagger only where there are three columns */
 @media (min-width: 1000px) { .drop { --drop: 56px; } }
 
@@ -46,6 +57,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid #2B3A9C; outline-offs
   .mt-row { grid-template-columns: 1fr !important; gap: 6px !important; }
   .mt-pin { position: static !important; margin: -36px 0 0 18px; }
   .tag-wrap .string { display: none; }
+  .film-row { flex-direction: column !important; }
+  .film-row > figure { flex: none !important; width: 100%; }
   .site-header { gap: 4px 20px !important; padding: 10px 16px !important; }
   .site-header img { width: 120px !important; }
   .site-header .ig-link { display: none; }
