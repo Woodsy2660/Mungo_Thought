@@ -12,7 +12,7 @@ This is the website: plain HTML, CSS and a small amount of JavaScript. It has no
 | `/stories` | `stories/index.html` | Featured story, topic filter, story cards, what's in season now |
 | `/stories/sea-urchin` | `stories/sea-urchin.html` | A story page |
 | `/in-season` | `in-season.html` | Today's month and its produce, the month ruler, the year |
-| `/lewis` | `lewis.html` | Lewis: portrait, film, notebook |
+| `/lewis` | `lewis.html` | Lewis, the founder: portrait, Yenda, why Mungo Thought, photos on film, the kitchen film |
 | (any other URL) | `404.html` | Not on the menu |
 
 Shared files:
