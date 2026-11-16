@@ -64,6 +64,59 @@ a:focus-visible, button:focus-visible { outline: 2px solid #2B3A9C; outline-offs
   .site-header .ig-link { display: none; }
 }
 
+/* ---------- hero food: each ingredient has its own jiggle, then rests. Hover, tap or a new season gives it a bigger one. ---------- */
+.jig { will-change: transform; animation-iteration-count: infinite; animation-timing-function: ease-in-out; -webkit-tap-highlight-color: transparent; }
+.jig-uni { transform-origin: 50% 90%; animation-name: jig-uni; animation-duration: 2600ms; }
+.jig-bream { transform-origin: 55% 60%; animation-name: jig-bream; animation-duration: 3400ms; }
+.jig-crayfish { transform-origin: 50% 95%; animation-name: jig-crayfish; animation-duration: 4000ms; }
+.jig-chicken { transform-origin: 50% 95%; animation-name: jig-chicken; animation-duration: 3000ms; }
+.jig.boing { animation: jig-boing 900ms cubic-bezier(.3,1.4,.5,1) 1; transform-origin: 50% 90%; }
+@keyframes jig-uni {
+  0% { transform: scale(1,1); }
+  8% { transform: scale(1.035,.965); }
+  16% { transform: scale(.975,1.025); }
+  24% { transform: scale(1.015,.985); }
+  32% { transform: scale(.995,1.005); }
+  42% { transform: scale(1,1); }
+  100% { transform: scale(1,1); }
+}
+@keyframes jig-bream {
+  0% { transform: rotate(0deg) translateY(0px) skewX(0deg); }
+  10% { transform: rotate(-2.2deg) translateY(-6px) skewX(1.5deg); }
+  20% { transform: rotate(1.4deg) translateY(0px) skewX(-1deg); }
+  29% { transform: rotate(-.8deg) translateY(-2px) skewX(.5deg); }
+  38% { transform: rotate(.3deg) translateY(0px) skewX(0deg); }
+  46% { transform: rotate(0deg) translateY(0px) skewX(0deg); }
+  100% { transform: rotate(0deg) translateY(0px) skewX(0deg); }
+}
+@keyframes jig-crayfish {
+  0% { transform: rotate(0deg); }
+  12% { transform: rotate(-1.4deg); }
+  26% { transform: rotate(1.1deg); }
+  38% { transform: rotate(-.4deg); }
+  48% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes jig-chicken {
+  0% { transform: translateY(0px) scale(1,1); }
+  9% { transform: translateY(-8px) scale(.985,1.02); }
+  17% { transform: translateY(0px) scale(1.03,.97); }
+  25% { transform: translateY(-3px) scale(.995,1.01); }
+  33% { transform: translateY(0px) scale(1.01,.99); }
+  42% { transform: translateY(0px) scale(1,1); }
+  100% { transform: translateY(0px) scale(1,1); }
+}
+@keyframes jig-boing {
+  0% { transform: scale(1,1) rotate(0deg); }
+  15% { transform: scale(1.08,.9) rotate(0deg); }
+  30% { transform: scale(.94,1.07) rotate(-2deg); }
+  45% { transform: scale(1.04,.96) rotate(1.5deg); }
+  60% { transform: scale(.98,1.02) rotate(0deg); }
+  80% { transform: scale(1.01,.99) rotate(0deg); }
+  100% { transform: scale(1,1) rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) { .jig, .jig.boing { animation: none !important; } }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .field, [data-season-scope] section { transition: none !important; }

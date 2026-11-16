@@ -18,9 +18,24 @@
   }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
+  // A bigger jiggle: on hover, on tap, and when a new season's ingredient arrives.
+  function boing(el) {
+    if (reduceMotion || !el) return;
+    el.classList.remove('boing');
+    void el.offsetWidth; // restart the animation
+    el.classList.add('boing');
+  }
+  document.querySelectorAll('.jig').forEach(function (el) {
+    el.addEventListener('animationend', function (e) { if (e.animationName === 'jig-boing') el.classList.remove('boing'); });
+    el.addEventListener('pointerenter', function () { boing(el); });
+    el.addEventListener('click', function () { boing(el); });
+  });
+
   function apply(scope, m) {
     var s = seasonOf(m);
     var S = SEASONS[s];
+    var changed = scope.getAttribute('data-season') !== s;
+    scope.setAttribute('data-season', s);
     scope.style.setProperty('--ground', S.ground);
     scope.style.setProperty('--on', S.on);
     scope.setAttribute('data-month', m);
@@ -33,6 +48,9 @@
       else if (k === 'seasonName') el.textContent = cap(s);
       else if (k === 'line') el.textContent = S.line;
     });
+    if (changed) {
+      scope.querySelectorAll('.jig').forEach(function (el) { if (!el.hidden) boing(el); });
+    }
     scope.querySelectorAll('[data-month]').forEach(function (b) {
       var mm = b.getAttribute('data-month');
       if (!mm || b === scope) return;
