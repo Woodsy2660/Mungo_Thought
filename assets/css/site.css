@@ -1,0 +1,57 @@
+/* Mungo Thought — site styles. Most layout is inline on the elements; this file holds fonts, states and the phone overrides. */
+
+@font-face { font-family: 'TeX Gyre Heros'; src: url(/assets/fonts/Heros-Regular.woff2) format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'TeX Gyre Heros'; src: url(/assets/fonts/Heros-Bold.woff2) format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url(/assets/fonts/CourierPrime-Regular.woff2) format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Courier Prime'; src: url(/assets/fonts/CourierPrime-Bold.woff2) format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Sorts Mill Goudy'; src: url(/assets/fonts/SortsMillGoudy-Regular.woff2) format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Sorts Mill Goudy'; src: url(/assets/fonts/SortsMillGoudy-Italic.woff2) format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; }
+body { margin: 0; background: #FFFDF8; color: #1E1A16; font: 400 15px/1.5 'TeX Gyre Heros', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+img, video { max-width: 100%; }
+a { color: #1E1A16; }
+a:hover { color: #B9341E; }
+[hidden] { display: none !important; }
+
+/* keyboard focus */
+a:focus-visible, button:focus-visible { outline: 2px solid #2B3A9C; outline-offset: 3px; }
+.mt-ticket:hover { background: #B9341E !important; color: #FFF4D6 !important; }
+.mt-ticket:focus-visible { outline: none; background: #2B3A9C !important; color: #FFF4D6 !important; text-decoration: underline !important; text-underline-offset: 4px; }
+
+.skip { position: absolute; left: -999px; top: 8px; z-index: 100; padding: 10px 14px; background: #1E1A16; color: #FFF4D6; }
+.skip:focus { left: 8px; }
+
+/* anchors land below the sticky header */
+#popups, #coming-up, #host { scroll-margin-top: 96px; }
+
+/* month ruler: the circle sits on the chosen month, "Now" under today's */
+.ruler-month .ring, .ruler-month .now { display: none; }
+.ruler-month[aria-pressed="true"] .ring { display: block; }
+.ruler-month[data-now] .now { display: block; }
+
+/* story topics: underline on the chosen tab */
+.tab .u { display: none; }
+.tab[aria-pressed="true"] .u { display: block; }
+
+/* pinboard stagger only where there are three columns */
+@media (min-width: 1000px) { .drop { --drop: 56px; } }
+
+/* phones and small tablets */
+@media (max-width: 760px) {
+  [style*="font-size:44px"] { font-size: 34px !important; }
+  [style*="font-size:28px"] { font-size: 23px !important; }
+  [style*="font-size:19px;line-height:1.55"] { font-size: 18px !important; }
+  .mt-row { grid-template-columns: 1fr !important; gap: 6px !important; }
+  .mt-pin { position: static !important; margin: -36px 0 0 18px; }
+  .tag-wrap .string { display: none; }
+  .site-header { gap: 4px 20px !important; padding: 10px 16px !important; }
+  .site-header img { width: 120px !important; }
+  .site-header .ig-link { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .field, [data-season-scope] section { transition: none !important; }
+}
